@@ -697,3 +697,30 @@ h4 {
     font-size: 12px;
   }
 }
+
+@media (max-width: 540px) {
+  .hero-card {
+    padding: 16px;
+  }
+
+  .hero-grid {
+    gap: 10px;
+  }
+
+  .gauge {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .gauge-dial {
+    width: 64px;
+  }
+
+  .gauge-center .gauge-number {
+    font-size: 13px;
+  }
+
+  .gauge-meta {
+    font-size: 12px;
+  }
+}
