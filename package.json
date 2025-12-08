@@ -1,0 +1,20 @@
+{
+  "name": "astradic-org",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "format": "prettier --write \"src/**/*.{astro,ts,js,css}\""
+  },
+  "dependencies": {
+    "astro": "^4.12.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}

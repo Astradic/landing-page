@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Astradic | Discipline meets momentum",
+  description = "A discipline and productivity OS that plans your day, keeps you accountable, and keeps your energy balanced.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="./favicon.ico" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <slot />
+    </div>
+  </body>
+</html>
