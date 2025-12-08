@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 
 export default defineConfig({
   srcDir: "src",
-  outDir: "dist",
+  outDir: "docs",
   base: "./",
   build: {
     assetsPrefix: "./",
