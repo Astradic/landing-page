@@ -6,5 +6,6 @@ export default defineConfig({
   base: "./",
   build: {
     assetsPrefix: "./",
+    assets: "assets",
   },
 });
