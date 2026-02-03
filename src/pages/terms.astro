@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Astradic | Terms of Use"
+  description="Terms of Use for Astradic's website and services."
+>
+  <header class="nav">
+    <a class="logo" href="/">
+      <span class="brand-name">Astradic</span>
+    </a>
+    <div class="nav-links">
+      <a class="btn btn-ghost" href="/">Back home</a>
+      <a class="btn btn-primary" style="color: #fff;" href="https://forms.fillout.com/t/bW7CakbWKCus">Get early access</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1 class="fade-in delayed">Terms of Use</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card legal-embed-card">
+        <div name="termly-embed" data-id="e935f299-62f4-4ae2-b9cf-8c8c39100f7d"></div>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline type="text/javascript">
+    (function (d, s, id) {
+      var js,
+        tjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://app.termly.io/embed-policy.min.js";
+      tjs.parentNode.insertBefore(js, tjs);
+    })(document, "script", "termly-jssdk");
+  </script>
+</BaseLayout>
