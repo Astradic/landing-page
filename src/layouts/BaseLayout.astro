@@ -4,7 +4,40 @@ import "../styles/global.css";
 const {
   title = "Astradic | Screen time blocking",
   description = "A screen time blocking app that locks distractions, enforces limits, and protects your focus.",
+  ogImage = "/complianticon2.png",
+  ogImageAlt = "Astradic app icon",
+  ogType = "website",
+  canonicalUrl,
 } = Astro.props;
+
+const siteUrl = Astro.site ? new URL(Astro.site.toString()) : new URL("https://astradic.org");
+const pathname = Astro.url ? Astro.url.pathname : "/";
+const canonical = canonicalUrl ?? new URL(pathname, siteUrl).href;
+const ogImageUrl = new URL(ogImage, siteUrl).href;
+const socialProfiles = ["https://www.instagram.com/astradic_org"];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl.href}#organization`,
+      name: "Astradic",
+      url: siteUrl.href,
+      logo: ogImageUrl,
+      sameAs: socialProfiles,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl.href}#website`,
+      name: "Astradic",
+      url: siteUrl.href,
+      description,
+      publisher: {
+        "@id": `${siteUrl.href}#organization`,
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -14,7 +47,27 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/complianticon2.png" type="image/png" />
     <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/complianticon2.png" />
+    <meta property="og:site_name" content="Astradic" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    <script type="application/ld+json" is:inline>
+      {JSON.stringify(jsonLd)}
+    </script>
   </head>
   <body>
     <canvas id="starfield" class="starfield" aria-hidden="true"></canvas>
