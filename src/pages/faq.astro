@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout
+  title="Astradic | FAQ"
+  description="Common questions about Astradic."
+>
+  <SiteNav currentPath={Astro.url?.pathname ?? "/faq"} />
+
+  <main>
+    <section class="section">
+      <div class="page-header">
+        <span class="pill">FAQ</span>
+        <h1 class="page-title">Common questions</h1>
+        <p class="page-lede">Everything you need to know before joining the early access list.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3 class="feature-title">Is Astradic available now?</h3>
+          <p>Astradic is in active development. Join the early access list to be the first to try it.</p>
+        </div>
+        <div class="card">
+          <h3 class="feature-title">What can Astradic block?</h3>
+          <p>Build custom block lists for distracting apps, websites, and habits you want to limit.</p>
+        </div>
+        <div class="card">
+          <h3 class="feature-title">Will it work with my schedule?</h3>
+          <p>Yes. You can set recurring focus windows, quick sessions, or time-based limits that fit your day.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="application/ld+json" is:inline>
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Is Astradic available now?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Astradic is in active development. Join the early access list to be the first to try it.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What can Astradic block?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Astradic lets you create custom block lists for distracting apps, websites, and habits you want to limit.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Will it work with my schedule?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. You can set recurring focus windows, quick sessions, or time-based limits that fit your day.",
+          },
+        },
+      ],
+    })}
+  </script>
+
+  <SiteFooter />
+</BaseLayout>

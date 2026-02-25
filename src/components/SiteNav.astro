@@ -1,0 +1,22 @@
+---
+const { currentPath = "/" } = Astro.props;
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/pillars", label: "Pillars" },
+  { href: "/faq", label: "FAQ" },
+];
+---
+
+<header class="nav">
+  <a class="logo" href="/">
+    <span class="brand-name">Astradic</span>
+  </a>
+  <div class="nav-links">
+    {links.map((link) => (
+      <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+        {link.label}
+      </a>
+    ))}
+    <a class="btn btn-primary" href="https://forms.fillout.com/t/bW7CakbWKCus">Get early access</a>
+  </div>
+</header>

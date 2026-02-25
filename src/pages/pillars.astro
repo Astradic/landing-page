@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout
+  title="Astradic | Pillars and how it works"
+  description="The core pillars of Astradic and how the system works."
+>
+  <SiteNav currentPath={Astro.url?.pathname ?? "/pillars"} />
+
+  <main>
+    <section class="section">
+      <div class="page-header">
+        <span class="pill">Why Astradic</span>
+        <h1 class="page-title">Screen time control without constant willpower</h1>
+        <p class="page-lede">
+          Astradic combines distraction blocking, focus rituals, and smart limits so you can do your best
+          work without fighting your phone every hour.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="tag">Distraction shield</span>
+          <h3 class="feature-title">App and website blocking</h3>
+          <p>Build focus lists for social, news, or entertainment apps and lock them with one tap.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Focus routines</span>
+          <h3 class="feature-title">Schedules that stick</h3>
+          <p>Automate recurring focus windows so your best hours stay protected.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Accountability</span>
+          <h3 class="feature-title">Limits with intention</h3>
+          <p>Use hard caps, cooldowns, and friction to make breaks deliberate instead of automatic.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="page-header">
+        <span class="pill">How it works</span>
+        <h2 class="page-title">Plan, protect, review</h2>
+        <p class="page-lede">
+          Set up your focus plan once, then let Astradic enforce it in the moments that matter.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3 class="feature-title">1. Map your distractions</h3>
+          <p>Choose the apps, sites, or categories that pull you off task and add them to a block list.</p>
+        </div>
+        <div class="card">
+          <h3 class="feature-title">2. Design focus windows</h3>
+          <p>Create deep-work sessions, commute modes, or evening wind-downs that repeat automatically.</p>
+        </div>
+        <div class="card">
+          <h3 class="feature-title">3. Learn and refine</h3>
+          <p>Review focus trends, tighten limits, and keep your schedule aligned to your goals.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="page-header">
+        <span class="pill">Built for real life</span>
+        <h2 class="page-title">Who Astradic helps</h2>
+        <p class="page-lede">
+          Whether you are trying to reclaim deep work or cut late-night scrolling, Astradic gives you a
+          clear, consistent system.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3 class="feature-title">Deep work pros</h3>
+          <p>Block distracting apps during creative or technical work so you can stay in flow longer.</p>
+        </div>
+        <div class="card">
+          <h3 class="feature-title">Students and learners</h3>
+          <p>Keep study time distraction-free with scheduled focus sessions and smart limits.</p>
+        </div>
+        <div class="card">
+          <h3 class="feature-title">Families and parents</h3>
+          <p>Create healthier routines with consistent limits and shared focus windows.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
