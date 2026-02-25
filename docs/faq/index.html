@@ -1,0 +1,132 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Astradic | FAQ</title><meta name="description" content="Common questions about Astradic."><meta name="robots" content="index, follow"><link rel="canonical" href="https://astradic.org/faq/"><link rel="icon" href="/complianticon2.png" type="image/png"><link rel="icon" href="/logo.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/complianticon2.png"><meta property="og:site_name" content="Astradic"><meta property="og:title" content="Astradic | FAQ"><meta property="og:description" content="Common questions about Astradic."><meta property="og:type" content="website"><meta property="og:url" content="https://astradic.org/faq/"><meta property="og:image" content="https://astradic.org/complianticon2.png"><meta property="og:image:alt" content="Astradic app icon"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Astradic | FAQ"><meta name="twitter:description" content="Common questions about Astradic."><meta name="twitter:image" content="https://astradic.org/complianticon2.png"><meta name="twitter:image:alt" content="Astradic app icon"><script type="application/ld+json">
+      {JSON.stringify(jsonLd)}
+    </script><link rel="stylesheet" href="/assets/faq.CbXuxJYB.css"></head> <body> <canvas id="starfield" class="starfield" aria-hidden="true"></canvas> <div class="page-shell">  <header class="nav"> <a class="logo" href="/"> <span class="brand-name">Astradic</span> </a> <div class="nav-links"> <a href="/"> Home </a><a href="/pillars"> Pillars </a><a href="/faq"> FAQ </a> <a class="btn btn-primary" href="https://forms.fillout.com/t/bW7CakbWKCus">Get early access</a> </div> </header> <main> <section class="section"> <div class="page-header"> <span class="pill">FAQ</span> <h1 class="page-title">Common questions</h1> <p class="page-lede">Everything you need to know before joining the early access list.</p> </div> <div class="grid grid-3"> <div class="card"> <h3 class="feature-title">Is Astradic available now?</h3> <p>Astradic is in active development. Join the early access list to be the first to try it.</p> </div> <div class="card"> <h3 class="feature-title">What can Astradic block?</h3> <p>Build custom block lists for distracting apps, websites, and habits you want to limit.</p> </div> <div class="card"> <h3 class="feature-title">Will it work with my schedule?</h3> <p>Yes. You can set recurring focus windows, quick sessions, or time-based limits that fit your day.</p> </div> </div> </section> </main> <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Is Astradic available now?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Astradic is in active development. Join the early access list to be the first to try it.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What can Astradic block?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Astradic lets you create custom block lists for distracting apps, websites, and habits you want to limit.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Will it work with my schedule?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. You can set recurring focus windows, quick sessions, or time-based limits that fit your day.",
+          },
+        },
+      ],
+    })}
+  </script> <footer class="footer"> <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;"> <div style="display:flex; align-items:center; gap:10px;"> <strong class="brand-name">Astradic</strong> <span style="color:var(--muted);">Screen time blocking</span> </div> <div class="footer-links"> <a href="/terms">Terms</a> <a href="/privacy">Privacy</a> <a href="https://www.instagram.com/astradic_org">@astradic_org</a> <span>© 2026 Astradic. All rights reserved.</span> </div> </div> </footer>  </div> <script>
+      const canvas = document.getElementById("starfield");
+      const ctx = canvas.getContext("2d");
+      const config = {
+        minSize: 0.5,
+        maxSize: 1.5,
+        minSpeed: 4,
+        maxSpeed: 20,
+        density: 0.00016,
+      };
+
+      let stars = [];
+      let width = 0;
+      let height = 0;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let lastTime = performance.now();
+      let attractor = null;
+
+      try {
+        if (document.body.dataset.starAttractor) {
+          attractor = JSON.parse(document.body.dataset.starAttractor);
+        }
+      } catch {
+        attractor = null;
+      }
+
+      function rand(min, max) {
+        return min + Math.random() * (max - min);
+      }
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const targetCount = Math.max(60, Math.min(260, Math.floor(width * height * config.density)));
+        stars = new Array(targetCount).fill(0).map(() => ({
+          xNorm: rand(0, 1),
+          y: rand(0, height),
+          size: rand(config.minSize, config.maxSize),
+          speed: rand(config.minSpeed, config.maxSpeed),
+          baseOpacity: rand(0.25, 0.75),
+          twinkleAmp: rand(0.12, 0.35),
+          twinkleRate: rand(0.0006, 0.0022),
+          phase: rand(0, Math.PI * 2),
+        }));
+      }
+
+      function getStarColor(opacity) {
+        return `rgba(255, 255, 255, ${opacity})`;
+      }
+
+      function update(now) {
+        const dt = Math.min(0.05, (now - lastTime) / 1000);
+        lastTime = now;
+        ctx.clearRect(0, 0, width, height);
+
+        const hasAttractor = attractor && typeof attractor.x === "number" && typeof attractor.y === "number";
+        const attractorX = hasAttractor ? attractor.x * width : 0;
+        const attractorY = hasAttractor ? attractor.y * height : 0;
+        const radius = hasAttractor ? (attractor.radius || 160) : 0;
+        const strength = hasAttractor ? (attractor.strength || 6) : 0;
+
+        for (const star of stars) {
+          star.y = (star.y + star.speed * dt) % height;
+          let x = star.xNorm * width;
+
+          if (hasAttractor) {
+            const dx = attractorX - x;
+            const dy = attractorY - star.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist > 0 && dist < radius) {
+              const pull = (1 - dist / radius) * strength * 0.016;
+              x += (dx / dist) * pull;
+              x = (x + width) % width;
+              star.xNorm = x / width;
+            }
+          }
+
+          const twinkle = star.baseOpacity + star.twinkleAmp * Math.sin(now * star.twinkleRate + star.phase);
+          ctx.fillStyle = getStarColor(Math.max(0.05, Math.min(1, twinkle)));
+          ctx.beginPath();
+          ctx.arc(x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      resize();
+      requestAnimationFrame(update);
+
+      window.addEventListener("resize", resize);
+    </script> </body> </html>

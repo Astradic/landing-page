@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Astradic | Pillars and how it works</title><meta name="description" content="The core pillars of Astradic and how the system works."><meta name="robots" content="index, follow"><link rel="canonical" href="https://astradic.org/pillars/"><link rel="icon" href="/complianticon2.png" type="image/png"><link rel="icon" href="/logo.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/complianticon2.png"><meta property="og:site_name" content="Astradic"><meta property="og:title" content="Astradic | Pillars and how it works"><meta property="og:description" content="The core pillars of Astradic and how the system works."><meta property="og:type" content="website"><meta property="og:url" content="https://astradic.org/pillars/"><meta property="og:image" content="https://astradic.org/complianticon2.png"><meta property="og:image:alt" content="Astradic app icon"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Astradic | Pillars and how it works"><meta name="twitter:description" content="The core pillars of Astradic and how the system works."><meta name="twitter:image" content="https://astradic.org/complianticon2.png"><meta name="twitter:image:alt" content="Astradic app icon"><script type="application/ld+json">
+      {JSON.stringify(jsonLd)}
+    </script><link rel="stylesheet" href="/assets/faq.CbXuxJYB.css"></head> <body> <canvas id="starfield" class="starfield" aria-hidden="true"></canvas> <div class="page-shell">  <header class="nav"> <a class="logo" href="/"> <span class="brand-name">Astradic</span> </a> <div class="nav-links"> <a href="/"> Home </a><a href="/pillars"> Pillars </a><a href="/faq"> FAQ </a> <a class="btn btn-primary" href="https://forms.fillout.com/t/bW7CakbWKCus">Get early access</a> </div> </header> <main> <section class="section"> <div class="page-header"> <span class="pill">Why Astradic</span> <h1 class="page-title">Screen time control without constant willpower</h1> <p class="page-lede">
+Astradic combines distraction blocking, focus rituals, and smart limits so you can do your best
+          work without fighting your phone every hour.
+</p> </div> <div class="grid grid-3"> <div class="card"> <span class="tag">Distraction shield</span> <h3 class="feature-title">App and website blocking</h3> <p>Build focus lists for social, news, or entertainment apps and lock them with one tap.</p> </div> <div class="card"> <span class="tag">Focus routines</span> <h3 class="feature-title">Schedules that stick</h3> <p>Automate recurring focus windows so your best hours stay protected.</p> </div> <div class="card"> <span class="tag">Accountability</span> <h3 class="feature-title">Limits with intention</h3> <p>Use hard caps, cooldowns, and friction to make breaks deliberate instead of automatic.</p> </div> </div> </section> <section class="section"> <div class="page-header"> <span class="pill">How it works</span> <h2 class="page-title">Plan, protect, review</h2> <p class="page-lede">
+Set up your focus plan once, then let Astradic enforce it in the moments that matter.
+</p> </div> <div class="grid grid-3"> <div class="card"> <h3 class="feature-title">1. Map your distractions</h3> <p>Choose the apps, sites, or categories that pull you off task and add them to a block list.</p> </div> <div class="card"> <h3 class="feature-title">2. Design focus windows</h3> <p>Create deep-work sessions, commute modes, or evening wind-downs that repeat automatically.</p> </div> <div class="card"> <h3 class="feature-title">3. Learn and refine</h3> <p>Review focus trends, tighten limits, and keep your schedule aligned to your goals.</p> </div> </div> </section> <section class="section"> <div class="page-header"> <span class="pill">Built for real life</span> <h2 class="page-title">Who Astradic helps</h2> <p class="page-lede">
+Whether you are trying to reclaim deep work or cut late-night scrolling, Astradic gives you a
+          clear, consistent system.
+</p> </div> <div class="grid grid-3"> <div class="card"> <h3 class="feature-title">Deep work pros</h3> <p>Block distracting apps during creative or technical work so you can stay in flow longer.</p> </div> <div class="card"> <h3 class="feature-title">Students and learners</h3> <p>Keep study time distraction-free with scheduled focus sessions and smart limits.</p> </div> <div class="card"> <h3 class="feature-title">Families and parents</h3> <p>Create healthier routines with consistent limits and shared focus windows.</p> </div> </div> </section> </main> <footer class="footer"> <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;"> <div style="display:flex; align-items:center; gap:10px;"> <strong class="brand-name">Astradic</strong> <span style="color:var(--muted);">Screen time blocking</span> </div> <div class="footer-links"> <a href="/terms">Terms</a> <a href="/privacy">Privacy</a> <a href="https://www.instagram.com/astradic_org">@astradic_org</a> <span>© 2026 Astradic. All rights reserved.</span> </div> </div> </footer>  </div> <script>
+      const canvas = document.getElementById("starfield");
+      const ctx = canvas.getContext("2d");
+      const config = {
+        minSize: 0.5,
+        maxSize: 1.5,
+        minSpeed: 4,
+        maxSpeed: 20,
+        density: 0.00016,
+      };
+
+      let stars = [];
+      let width = 0;
+      let height = 0;
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let lastTime = performance.now();
+      let attractor = null;
+
+      try {
+        if (document.body.dataset.starAttractor) {
+          attractor = JSON.parse(document.body.dataset.starAttractor);
+        }
+      } catch {
+        attractor = null;
+      }
+
+      function rand(min, max) {
+        return min + Math.random() * (max - min);
+      }
+
+      function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const targetCount = Math.max(60, Math.min(260, Math.floor(width * height * config.density)));
+        stars = new Array(targetCount).fill(0).map(() => ({
+          xNorm: rand(0, 1),
+          y: rand(0, height),
+          size: rand(config.minSize, config.maxSize),
+          speed: rand(config.minSpeed, config.maxSpeed),
+          baseOpacity: rand(0.25, 0.75),
+          twinkleAmp: rand(0.12, 0.35),
+          twinkleRate: rand(0.0006, 0.0022),
+          phase: rand(0, Math.PI * 2),
+        }));
+      }
+
+      function getStarColor(opacity) {
+        return `rgba(255, 255, 255, ${opacity})`;
+      }
+
+      function update(now) {
+        const dt = Math.min(0.05, (now - lastTime) / 1000);
+        lastTime = now;
+        ctx.clearRect(0, 0, width, height);
+
+        const hasAttractor = attractor && typeof attractor.x === "number" && typeof attractor.y === "number";
+        const attractorX = hasAttractor ? attractor.x * width : 0;
+        const attractorY = hasAttractor ? attractor.y * height : 0;
+        const radius = hasAttractor ? (attractor.radius || 160) : 0;
+        const strength = hasAttractor ? (attractor.strength || 6) : 0;
+
+        for (const star of stars) {
+          star.y = (star.y + star.speed * dt) % height;
+          let x = star.xNorm * width;
+
+          if (hasAttractor) {
+            const dx = attractorX - x;
+            const dy = attractorY - star.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist > 0 && dist < radius) {
+              const pull = (1 - dist / radius) * strength * 0.016;
+              x += (dx / dist) * pull;
+              x = (x + width) % width;
+              star.xNorm = x / width;
+            }
+          }
+
+          const twinkle = star.baseOpacity + star.twinkleAmp * Math.sin(now * star.twinkleRate + star.phase);
+          ctx.fillStyle = getStarColor(Math.max(0.05, Math.min(1, twinkle)));
+          ctx.beginPath();
+          ctx.arc(x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      resize();
+      requestAnimationFrame(update);
+
+      window.addEventListener("resize", resize);
+    </script> </body> </html>
