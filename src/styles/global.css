@@ -551,6 +551,23 @@ main > .section:first-child {
   opacity: 0;
 }
 
+.support-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.support-hero h2 {
+  font-size: clamp(32px, 4vw, 38px);
+  margin: 0;
+}
+
+.support-hero p {
+  max-width: 520px;
+}
+
 .tag {
   display: inline-flex;
   align-items: center;

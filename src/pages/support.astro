@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout
+  title="Astradic | Support"
+  description="Need help with Astradic? Contact our team at support@astradic.org for account, early access, and technical questions."
+>
+  <SiteNav currentPath={Astro.url?.pathname ?? "/"} />
+
+  <main>
+    <section class="section">
+      <div class="page-header">
+        <span class="pill">Support</span>
+        <h1 class="page-title">Let us handle the hard part</h1>
+        <p class="page-lede">
+          Whether you are locking in a new routine or chasing down a blocker, our small team is
+          standing by to help.
+        </p>
+      </div>
+
+      <div class="support-hero card">
+        <div>
+          <h2>support@astradic.org</h2>
+          <p style="margin-top: 10px; max-width: 520px;">Email is the fastest way to reach us.</p>
+        </div>
+        <a class="btn btn-primary" href="mailto:support@astradic.org">Email support</a>
+      </div>
+
+      <div class="section-header" style="margin-top: 32px;">
+        <h2>What we can help with</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <strong>Account + early access</strong>
+          <p>Update your waitlist preference, share use case details, or ask about beta invite timing.</p>
+        </div>
+        <div class="card">
+          <strong>Technical issues</strong>
+          <p>Report blocking bugs, sync problems, or crashes. Include diagnostics where possible.</p>
+        </div>
+        <div class="card">
+          <strong>Partnerships</strong>
+          <p>Media, creators, and partners can pitch us ideas or request assets through the same inbox.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter />
+</BaseLayout>
